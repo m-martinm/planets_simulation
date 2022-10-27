@@ -46,7 +46,7 @@ class Planet:
 
         self.pos = [Engine.center[0], Engine.center[1]]
         self.functions = ctypes.CDLL("modules/libfunctions.so")
-        self.functions.compute_coordinates.argtypes = [ctypes.c_double for x in range(16)]
+        self.functions.compute_coordinates.argtypes = [ctypes.c_double for x in range(17)]
         self.functions.compute_coordinates.restype = Point
 
         Engine.planet_list.append(self)
@@ -70,6 +70,6 @@ class Planet:
             coordinates = self.functions.compute_coordinates(dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
                                                            self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
 
-            self.pos[0] = Engine.center[0] + coordinates.x*200
-            self.pos[1] = Engine.center[1] + coordinates.y*200
-            Engine.time = Engine.time + 1
+            self.pos[0] = Engine.center[0] + coordinates.x*50
+            self.pos[1] = Engine.center[1] + coordinates.y*50
+            Engine.time = Engine.time + 10
