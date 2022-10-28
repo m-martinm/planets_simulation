@@ -8,6 +8,5 @@ Planetary Fact Sheet:
 https://nssdc.gsfc.nasa.gov/planetary/factsheet
 
 ## Required libraries for running the simulation
-- numpy
 - pandas
 - pygame
