@@ -1,13 +1,7 @@
 import pygame
-import ctypes
 from modules.Engine import *
 from modules.Constants import *
-import compute
-
-
-class Point(ctypes.Structure):
-    _fields_ = [("x", ctypes.c_double), ("y", ctypes.c_double)]
-
+import modules.compute 
 
 class Planet:
 
@@ -21,8 +15,9 @@ class Planet:
     b, c, s, f additional terms for Jupiter through Neptune
     """
 
-    def __init__(self, radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, W0, dW, b, c, s, f, sun=False):
+    def __init__(self, name,radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, W0, dW, b, c, s, f, sun=False):
         self.r = radius   # scale down for the animation
+        self.name = name
         self.color = color
         self.a0 = a0
         self.da = da
@@ -45,10 +40,6 @@ class Planet:
         self.sun = sun
 
         self.pos = [Engine.center[0], Engine.center[1]]
-        self.functions = ctypes.CDLL("modules/libfunctions.so")
-        self.functions.compute_coordinates.argtypes = [
-            ctypes.c_double for x in range(17)]
-        self.functions.compute_coordinates.restype = Point
 
         Engine.planet_list.append(self)
 
@@ -56,15 +47,12 @@ class Planet:
         pygame.draw.circle(Engine.screen, self.color, self.pos, self.r)
 
     def update(self):
-
         if self.sun == True:
             pass
 
         else:
-
             # double eccentric_anomaly(double period, double dt, double eccentricity) {...} where dt is the time elapsed since perihelion
-            coordinates = self.functions.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
+            coordinates = modules.compute.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
                                                              self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
-
-            self.pos[0] = Engine.center[0] + coordinates.x*50
-            self.pos[1] = Engine.center[1] + coordinates.y*50
+            self.pos[0] = Engine.center[0] + round(coordinates['x']*50, 5)
+            self.pos[1] = Engine.center[1] + round(coordinates['y']*50, 5)

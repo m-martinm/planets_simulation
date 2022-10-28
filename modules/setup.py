@@ -3,8 +3,8 @@ from Cython.Build import cythonize
 
 ext_modules = [
     Extension("compute",
-              sources=["compute.pyx"],
-              libraries=["m"] # Unix-like specific
+              sources=["compute.pyx"]
+            #   libraries=["m"] # Unix-like specific
               )
 ]
 
