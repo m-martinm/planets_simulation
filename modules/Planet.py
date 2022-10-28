@@ -15,9 +15,9 @@ class Planet:
     b, c, s, f additional terms for Jupiter through Neptune
     """
 
-    def __init__(self, name,radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, W0, dW, b, c, s, f, sun=False):
-        self.r = radius   # scale down for the animation
-        self.name = name
+        def __init__(self, far, radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, W0, dW, b, c, s, f, sun=False):
+        self.r = radius / 700  # scale down for the animation
+        self.far = far
         self.color = color
         self.a0 = a0
         self.da = da
@@ -47,12 +47,18 @@ class Planet:
         pygame.draw.circle(Engine.screen, self.color, self.pos, self.r)
 
     def update(self):
+
         if self.sun == True:
             pass
 
         else:
+
             # double eccentric_anomaly(double period, double dt, double eccentricity) {...} where dt is the time elapsed since perihelion
-            coordinates = modules.compute.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
+            coordinates = self.functions.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
                                                              self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
-            self.pos[0] = Engine.center[0] + round(coordinates['x']*50, 5)
-            self.pos[1] = Engine.center[1] + round(coordinates['y']*50, 5)
+            if not self.far: 
+                self.pos[0] = Engine.center[0] + coordinates['x']*150
+                self.pos[1] = Engine.center[1] + coordinates['y']*150
+            else:
+                self.pos[0] = Engine.center[0] + coordinates['x']*30
+                self.pos[1] = Engine.center[1] + coordinates['y']*30
