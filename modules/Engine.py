@@ -36,4 +36,4 @@ class Engine:
             planet.update()
             planet.display()
         pygame.display.flip()
-        Engine.time = round(Engine.time + Engine.speed/Engine.fps, 8)
+        Engine.time = Engine.time + Engine.speed/Engine.fps
