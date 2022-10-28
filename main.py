@@ -5,6 +5,10 @@ from modules.Planet import *
 from modules.Constants import *
 
 pygame.init()
+pygame.display.set_caption("Solar System Simulation")
+icon = pygame.image.load("files/icon.png")
+pygame.display.set_icon(icon)
+
 engine = Engine(1800, 1000)
 sun = Planet(False, 6955*3,YELLOW, 0, 0, 0, 0, 0, 0, 0, 0, # radius/33
              0, 0, 0, 0, 0, 0, 0, 0, sun=True)
