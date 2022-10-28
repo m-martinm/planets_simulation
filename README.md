@@ -10,3 +10,4 @@ https://nssdc.gsfc.nasa.gov/planetary/factsheet
 ## Required libraries for running the simulation
 - pandas
 - pygame
+- cython
