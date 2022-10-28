@@ -1,5 +1,4 @@
 import sys
-import ctypes
 from modules.Engine import *
 from modules.Planet import *
 from modules.Constants import *
