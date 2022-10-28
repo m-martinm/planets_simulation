@@ -4,6 +4,7 @@ from modules.Engine import *
 from modules.Planet import *
 from modules.Constants import *
 
+pygame.init()
 engine = Engine(1800, 1000)
 sun = Planet(False, 6955*3,YELLOW, 0, 0, 0, 0, 0, 0, 0, 0, # radius/33
              0, 0, 0, 0, 0, 0, 0, 0, sun=True)

@@ -15,7 +15,7 @@ class Planet:
     b, c, s, f additional terms for Jupiter through Neptune
     """
 
-        def __init__(self, far, radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, W0, dW, b, c, s, f, sun=False):
+    def __init__(self, far, radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, W0, dW, b, c, s, f, sun=False):
         self.r = radius / 700  # scale down for the animation
         self.far = far
         self.color = color
@@ -54,7 +54,7 @@ class Planet:
         else:
 
             # double eccentric_anomaly(double period, double dt, double eccentricity) {...} where dt is the time elapsed since perihelion
-            coordinates = self.functions.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
+            coordinates = modules.compute.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
                                                              self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
             if not self.far: 
                 self.pos[0] = Engine.center[0] + coordinates['x']*150
