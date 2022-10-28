@@ -6,7 +6,6 @@ from pandas import Timestamp, to_datetime
 class Engine:
 
     planet_list = []
-    pygame.init()
 
     def __init__(self, width, height):
         self.w = width
@@ -19,10 +18,9 @@ class Engine:
         Engine.fps = 30
         Engine.time = Timestamp.today(tz="UTC").to_julian_date()
         Engine.dt = None
-        Engine.screen = pygame.display.set_mode(
-            self.size, pygame.DOUBLEBUF, 8)
+        Engine.screen = pygame.display.set_mode(self.size)
         Engine.center = (self.w/2, self.h / 2)
-        Engine.speed = 5 # in [days/sec]
+        Engine.speed = 30 # in [days/sec]
 
     def render(self):
         self.clock.tick(Engine.fps)
@@ -37,5 +35,5 @@ class Engine:
         for planet in Engine.planet_list:
             planet.update()
             planet.display()
-        pygame.display.update()
-        Engine.time = Engine.time + Engine.speed/Engine.fps
+        pygame.display.flip()
+        Engine.time = round(Engine.time + Engine.speed/Engine.fps, 8)
