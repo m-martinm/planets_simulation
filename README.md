@@ -1,11 +1,13 @@
 # Simulation of planets in the solar system
 
-## links
+## Links
+Approximate Positions of the Planets:
 https://ssd.jpl.nasa.gov/planets/approx_pos.html
 
-https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+Planetary Fact Sheet:
+https://nssdc.gsfc.nasa.gov/planetary/factsheet
 
-## Required libraries
+## Required libraries for running the simulation
 - numpy
 - pandas
 - pygame
