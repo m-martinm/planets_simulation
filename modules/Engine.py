@@ -1,7 +1,6 @@
-from datetime import tzinfo
 import pygame
 from modules.Constants import *
-from pandas import *
+from pandas import Timestamp, to_datetime
 
 
 class Engine:
@@ -19,18 +18,24 @@ class Engine:
         # global variables and start
         Engine.fps = 30
         Engine.time = Timestamp.today(tz="UTC").to_julian_date()
-        Engine.screen = pygame.display.set_mode(self.size)
+        Engine.dt = None
+        Engine.screen = pygame.display.set_mode(
+            self.size, pygame.DOUBLEBUF, 8)
         Engine.center = (self.w/2, self.h / 2)
+        Engine.speed = 5 # in [days/sec]
 
     def render(self):
-        date = self.font.render(
-            f"Date: {to_datetime(Engine.time, origin= 'julian', unit='D').date()}", False, WHITE)
-        dateRect = date.get_rect()
-        dateRect.topleft = (30, 30)
-        Engine.screen.fill(BLACK)
-        Engine.screen.blit(date, dateRect)
         self.clock.tick(Engine.fps)
+        date = self.font.render(
+            f"Date: {to_datetime(Engine.time, origin= 'julian', unit='D').date()}", True, WHITE)
+        fps = self.font.render(str(int(self.clock.get_fps())), True, RED)
+
+        Engine.screen.fill(BLACK)
+        Engine.screen.blit(date, (30,30))
+        Engine.screen.blit(fps, (self.w - 60, 30))
+        Engine.dt = (Engine.time - 2451545.0) / 36525
         for planet in Engine.planet_list:
             planet.update()
             planet.display()
-        pygame.display.flip()
+        pygame.display.update()
+        Engine.time = Engine.time + Engine.speed/Engine.fps
