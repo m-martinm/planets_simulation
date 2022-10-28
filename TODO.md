@@ -1,6 +1,7 @@
  TODO list:
  
  - Remove W0, dW, I0, dI --> unused
+ - Check calculations, and time calculations something is wrong
  - Speed up<-->down button
  - Reverse time button
  - Replace ´pygame.draw.circle()´ with images and blitting them
