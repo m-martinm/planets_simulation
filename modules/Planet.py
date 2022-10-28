@@ -37,6 +37,7 @@ class Planet:
         self.dw = dw
         self. W0 = W0
         self.dW = dW
+
         # additional terms for some bodies
         self.b = b
         self.c = c
@@ -46,7 +47,8 @@ class Planet:
 
         self.pos = [Engine.center[0], Engine.center[1]]
         self.functions = ctypes.CDLL("modules/libfunctions.so")
-        self.functions.compute_coordinates.argtypes = [ctypes.c_double for x in range(17)]
+        self.functions.compute_coordinates.argtypes = [
+            ctypes.c_double for x in range(17)]
         self.functions.compute_coordinates.restype = Point
 
         Engine.planet_list.append(self)
@@ -61,15 +63,13 @@ class Planet:
 
         else:
 
-            # Current Julian date
-            ct = Engine.time
             # number of centuries past J2000
-            dt = (float(ct) - 2451545.0) / 36525
+            dt = (float(Engine.time) - 2451545.0) / 36525
 
             # double eccentric_anomaly(double period, double dt, double eccentricity) {...} where dt is the time elapsed since perihelion
             coordinates = self.functions.compute_coordinates(dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
-                                                           self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
+                                                             self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
 
             self.pos[0] = Engine.center[0] + coordinates.x*50
             self.pos[1] = Engine.center[1] + coordinates.y*50
-            Engine.time = Engine.time + 10
+            Engine.time = Engine.time + 1
