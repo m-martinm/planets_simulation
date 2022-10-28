@@ -1,9 +1,5 @@
- - Make fps count + tick 
  - Speed up-down button
  - Reverse time button
  - Scale radius, and distances
- - Find accurate perihelion data
  - Find images for the planets
- - Display "relative" time in human radable format
- - Somehow dont use unix time, too big numbers
  - Add trail behind the planets if not sun
