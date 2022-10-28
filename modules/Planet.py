@@ -1,7 +1,5 @@
 import pygame
 import ctypes
-import numpy as np
-from pandas import Timestamp
 from modules.Engine import *
 from modules.Constants import *
 
@@ -63,13 +61,9 @@ class Planet:
 
         else:
 
-            # number of centuries past J2000
-            dt = (float(Engine.time) - 2451545.0) / 36525
-
             # double eccentric_anomaly(double period, double dt, double eccentricity) {...} where dt is the time elapsed since perihelion
-            coordinates = self.functions.compute_coordinates(dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
+            coordinates = self.functions.compute_coordinates(Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI,
                                                              self.L0, self.dL, self.w0, self.dw, self.W0, self.dW, self.b, self.c, self.s, self.f)
 
             self.pos[0] = Engine.center[0] + coordinates.x*50
             self.pos[1] = Engine.center[1] + coordinates.y*50
-            Engine.time = Engine.time + 1
