@@ -40,7 +40,7 @@ class Engine:
             planet.update()
             planet.display()
         pygame.display.flip()
-        Engine.time = Engine.time + Engine.speed/Engine.fps
+        # Engine.time = Engine.time + Engine.speed/Engine.fps
 
     def interpolate(self):
         sorted_x = sorted(Engine.planet_list, key=attrgetter('avg_dist'))
