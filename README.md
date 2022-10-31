@@ -11,3 +11,4 @@ https://nssdc.gsfc.nasa.gov/planetary/factsheet
 - pandas
 - pygame
 - cython
+- numpy
