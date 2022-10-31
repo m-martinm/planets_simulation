@@ -14,17 +14,14 @@ cdef double wrapto180(double angle):
     return angle - 180.0
 
 cpdef Point compute_coordinates(double dt, double a0, double da, double e0,
-                                 double de, double I0, double dI, double L0,
-                                 double dL, double w0, double dw, double W0,
-                                 double dW, double b, double c, double s,
+                                 double de, double L0, double dL, double w0, 
+                                 double dw, double b, double c, double s,
                                  double f):
 
     cdef double a = a0 + dt * da
     cdef double e = e0 + dt * de
-    cdef double I = I0 + dt * dI
     cdef double L = L0 + dt * dL
     cdef double w = w0 + dt * dw
-    cdef double W = W0 + dt * dW
 
     cdef double tol = 10**-6
     cdef double mAnomaly = L - w + b * dt * dt + cos(rad(f * dt)) + s * sin(rad(f * dt))

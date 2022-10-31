@@ -1,7 +1,8 @@
+from operator import attrgetter
 import pygame
 from modules.Constants import *
 from pandas import Timestamp, to_datetime
-
+from numpy import interp
 
 class Engine:
 
@@ -16,11 +17,11 @@ class Engine:
 
         # global variables and start
         Engine.fps = 30
-        Engine.time = Timestamp.today(tz="UTC").to_julian_date()
+        Engine.time = Timestamp.today(tz="UTC").to_julian_date()    # current time in Julian Dates
         Engine.dt = None
         Engine.screen = pygame.display.set_mode(self.size)
         Engine.center = (self.w/2, self.h / 2)
-        Engine.speed = 30 # in [days/sec]
+        Engine.speed = 10 # in [days/sec]
 
     def render(self):
         self.clock.tick(Engine.fps)
@@ -31,9 +32,17 @@ class Engine:
         Engine.screen.fill(BLACK)
         Engine.screen.blit(date, (30,30))
         Engine.screen.blit(fps, (self.w - 60, 30))
-        Engine.dt = (Engine.time - 2451545.0) / 36525
+        Engine.dt = (Engine.time - 2451545.0) / 36525   #  the number of centuries past J2000.0 
         for planet in Engine.planet_list:
             planet.update()
             planet.display()
         pygame.display.flip()
-        Engine.time = Engine.time + Engine.speed/Engine.fps
+        # Engine.time = Engine.time + Engine.speed/Engine.fps
+    
+    def interpolate(self):
+        sorted_x = sorted(Engine.planet_list, key = attrgetter('avg_dist'))
+        min = sorted_x[1].avg_dist # sun's value 1 
+        max = sorted_x[-1].avg_dist
+        for planet in Engine.planet_list:
+            if not planet.sun:
+                planet.multiplier = interp(planet.avg_dist, [min, max], [120, 30])
