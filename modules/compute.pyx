@@ -1,5 +1,10 @@
 from libc.math cimport fmod, cos, sin, fabs, sqrt
 
+"""
+Lower accuracy formula for planetary positions based on:
+    https://ssd.jpl.nasa.gov/planets/approx_pos.html
+
+"""
 cdef struct Point:
     double x
     double y
@@ -14,8 +19,8 @@ cdef double wrapto180(double angle):
     return angle - 180.0
 
 cpdef Point compute_coordinates(double dt, double a0, double da, double e0,
-                                 double de, double L0, double dL, double w0, 
-                                 double dw, double b, double c, double s,
+                                 double de, double L0,
+                                 double dL, double w0, double dw, double b, double c, double s,
                                  double f):
 
     cdef double a = a0 + dt * da
