@@ -66,13 +66,7 @@ class Planet:
             #                                 double f):
             coordinates = modules.compute.compute_coordinates(
                 Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI, self.L0, self.dL, self.w0, self.dw, self.Omega0,self.dOmega,self.b, self.c, self.s, self.f)
-            # if self.name == "mars":
-            #     theta = np.radians(336.04084)
-            #     x = coordinates['x']
-            #     y = coordinates['y']
-            #     self.pos[0] = Engine.center[0] + 150 * (x*np.cos(theta) - y*np.sin(theta))
-            #     self.pos[1] = Engine.center[1] + 150 * (x*np.sin(theta) + y*np.cos(theta))
-            # else:
+
             self.pos[0] = Engine.center[0] + coordinates['x']*150
             self.pos[1] = Engine.center[1] + coordinates['y']*150
             

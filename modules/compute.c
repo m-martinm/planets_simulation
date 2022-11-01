@@ -970,9 +970,9 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_t_7compute_Point;
 
-/* "compute.pyx":8
- * 
+/* "compute.pyx":9
  * """
+ * 
  * cdef struct Point:             # <<<<<<<<<<<<<<
  *     double x
  *     double y
@@ -1271,12 +1271,12 @@ static PyObject *__pyx_pf_7compute_compute_coordinates(CYTHON_UNUSED PyObject *_
 static PyObject *__pyx_int_10;
 /* Late includes */
 
-/* "compute.pyx":12
+/* "compute.pyx":13
  *     double y
  * 
  * cdef double rad(double x):             # <<<<<<<<<<<<<<
+ *     """Converting [deg] to [rad]"""
  *     return x * 3.1415926535 / 180
- * 
  */
 
 static double __pyx_f_7compute_rad(double __pyx_v_x) {
@@ -1284,9 +1284,9 @@ static double __pyx_f_7compute_rad(double __pyx_v_x) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("rad", 0);
 
-  /* "compute.pyx":13
- * 
+  /* "compute.pyx":15
  * cdef double rad(double x):
+ *     """Converting [deg] to [rad]"""
  *     return x * 3.1415926535 / 180             # <<<<<<<<<<<<<<
  * 
  * cdef double wrapto180(double angle):
@@ -1294,12 +1294,12 @@ static double __pyx_f_7compute_rad(double __pyx_v_x) {
   __pyx_r = ((__pyx_v_x * 3.1415926535) / 180.0);
   goto __pyx_L0;
 
-  /* "compute.pyx":12
+  /* "compute.pyx":13
  *     double y
  * 
  * cdef double rad(double x):             # <<<<<<<<<<<<<<
+ *     """Converting [deg] to [rad]"""
  *     return x * 3.1415926535 / 180
- * 
  */
 
   /* function exit code */
@@ -1308,12 +1308,12 @@ static double __pyx_f_7compute_rad(double __pyx_v_x) {
   return __pyx_r;
 }
 
-/* "compute.pyx":15
+/* "compute.pyx":17
  *     return x * 3.1415926535 / 180
  * 
  * cdef double wrapto180(double angle):             # <<<<<<<<<<<<<<
+ *     """Simplify an angle"""
  *     angle = fmod(angle + 180.0, 360.0)
- *     if angle < 0:
  */
 
 static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
@@ -1322,17 +1322,17 @@ static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("wrapto180", 0);
 
-  /* "compute.pyx":16
- * 
+  /* "compute.pyx":19
  * cdef double wrapto180(double angle):
+ *     """Simplify an angle"""
  *     angle = fmod(angle + 180.0, 360.0)             # <<<<<<<<<<<<<<
  *     if angle < 0:
  *         angle += 360.0
  */
   __pyx_v_angle = fmod((__pyx_v_angle + 180.0), 360.0);
 
-  /* "compute.pyx":17
- * cdef double wrapto180(double angle):
+  /* "compute.pyx":20
+ *     """Simplify an angle"""
  *     angle = fmod(angle + 180.0, 360.0)
  *     if angle < 0:             # <<<<<<<<<<<<<<
  *         angle += 360.0
@@ -1341,7 +1341,7 @@ static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
   __pyx_t_1 = ((__pyx_v_angle < 0.0) != 0);
   if (__pyx_t_1) {
 
-    /* "compute.pyx":18
+    /* "compute.pyx":21
  *     angle = fmod(angle + 180.0, 360.0)
  *     if angle < 0:
  *         angle += 360.0             # <<<<<<<<<<<<<<
@@ -1350,8 +1350,8 @@ static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
  */
     __pyx_v_angle = (__pyx_v_angle + 360.0);
 
-    /* "compute.pyx":17
- * cdef double wrapto180(double angle):
+    /* "compute.pyx":20
+ *     """Simplify an angle"""
  *     angle = fmod(angle + 180.0, 360.0)
  *     if angle < 0:             # <<<<<<<<<<<<<<
  *         angle += 360.0
@@ -1359,7 +1359,7 @@ static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
  */
   }
 
-  /* "compute.pyx":19
+  /* "compute.pyx":22
  *     if angle < 0:
  *         angle += 360.0
  *     return angle - 180.0             # <<<<<<<<<<<<<<
@@ -1369,12 +1369,12 @@ static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
   __pyx_r = (__pyx_v_angle - 180.0);
   goto __pyx_L0;
 
-  /* "compute.pyx":15
+  /* "compute.pyx":17
  *     return x * 3.1415926535 / 180
  * 
  * cdef double wrapto180(double angle):             # <<<<<<<<<<<<<<
+ *     """Simplify an angle"""
  *     angle = fmod(angle + 180.0, 360.0)
- *     if angle < 0:
  */
 
   /* function exit code */
@@ -1383,7 +1383,7 @@ static double __pyx_f_7compute_wrapto180(double __pyx_v_angle) {
   return __pyx_r;
 }
 
-/* "compute.pyx":21
+/* "compute.pyx":24
  *     return angle - 180.0
  * 
  * cpdef Point compute_coordinates(double dt, double a0, double da, double e0,             # <<<<<<<<<<<<<<
@@ -1399,45 +1399,47 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
   double __pyx_v_L;
   double __pyx_v_w;
   double __pyx_v_Omega;
+  PyObject *__pyx_v_rarg_per = 0;
   double __pyx_v_tol;
   double __pyx_v_mAnomaly;
   double __pyx_v_e_x;
   double __pyx_v_eAnomaly;
   double __pyx_v_dE;
   double __pyx_v_dM;
-  PyObject *__pyx_v_tAnomaly = 0;
-  PyObject *__pyx_v_r = 0;
-  PyObject *__pyx_v_rOmega = 0;
-  PyObject *__pyx_v_rI = 0;
-  PyObject *__pyx_v_rw = 0;
+  PyObject *__pyx_v_reAnomaly = 0;
+  PyObject *__pyx_v_x_3 = 0;
+  PyObject *__pyx_v_y_3 = 0;
+  CYTHON_UNUSED double __pyx_v_rtAnomaly;
+  PyObject *__pyx_v_x_2 = 0;
+  PyObject *__pyx_v_y_2 = 0;
+  PyObject *__pyx_v_x_1 = 0;
+  PyObject *__pyx_v_y_1 = 0;
+  double __pyx_v_rOmega;
   struct __pyx_t_7compute_Point __pyx_v_coordinates;
   struct __pyx_t_7compute_Point __pyx_r;
   __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_1 = NULL;
+  double __pyx_t_2;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   int __pyx_t_5;
   double __pyx_t_6;
-  double __pyx_t_7;
-  double __pyx_t_8;
-  double __pyx_t_9;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("compute_coordinates", 0);
 
-  /* "compute.pyx":26
- *                                  double f):
+  /* "compute.pyx":30
  * 
+ *     # calculating the orbital elements at the given time
  *     cdef double a = a0 + dt * da             # <<<<<<<<<<<<<<
  *     cdef double e = e0 + dt * de
  *     cdef double I = I0 + dt * dI
  */
   __pyx_v_a = (__pyx_v_a0 + (__pyx_v_dt * __pyx_v_da));
 
-  /* "compute.pyx":27
- * 
+  /* "compute.pyx":31
+ *     # calculating the orbital elements at the given time
  *     cdef double a = a0 + dt * da
  *     cdef double e = e0 + dt * de             # <<<<<<<<<<<<<<
  *     cdef double I = I0 + dt * dI
@@ -1445,7 +1447,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_e = (__pyx_v_e0 + (__pyx_v_dt * __pyx_v_de));
 
-  /* "compute.pyx":28
+  /* "compute.pyx":32
  *     cdef double a = a0 + dt * da
  *     cdef double e = e0 + dt * de
  *     cdef double I = I0 + dt * dI             # <<<<<<<<<<<<<<
@@ -1454,7 +1456,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_I = (__pyx_v_I0 + (__pyx_v_dt * __pyx_v_dI));
 
-  /* "compute.pyx":29
+  /* "compute.pyx":33
  *     cdef double e = e0 + dt * de
  *     cdef double I = I0 + dt * dI
  *     cdef double L = L0 + dt * dL             # <<<<<<<<<<<<<<
@@ -1463,7 +1465,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_L = (__pyx_v_L0 + (__pyx_v_dt * __pyx_v_dL));
 
-  /* "compute.pyx":30
+  /* "compute.pyx":34
  *     cdef double I = I0 + dt * dI
  *     cdef double L = L0 + dt * dL
  *     cdef double w = w0 + dt * dw             # <<<<<<<<<<<<<<
@@ -1472,17 +1474,29 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_w = (__pyx_v_w0 + (__pyx_v_dt * __pyx_v_dw));
 
-  /* "compute.pyx":31
+  /* "compute.pyx":35
  *     cdef double L = L0 + dt * dL
  *     cdef double w = w0 + dt * dw
  *     cdef double Omega = Omega0 + dt * dOmega             # <<<<<<<<<<<<<<
  * 
- *     cdef double tol = 10**-6
+ *     # w = Omega + argument of the perihelion --> arg_per = w - Omega
  */
   __pyx_v_Omega = (__pyx_v_Omega0 + (__pyx_v_dt * __pyx_v_dOmega));
 
-  /* "compute.pyx":33
- *     cdef double Omega = Omega0 + dt * dOmega
+  /* "compute.pyx":38
+ * 
+ *     # w = Omega + argument of the perihelion --> arg_per = w - Omega
+ *     cdef rarg_per = rad(w-Omega)             # <<<<<<<<<<<<<<
+ * 
+ *     cdef double tol = 10**-6
+ */
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_7compute_rad((__pyx_v_w - __pyx_v_Omega))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_rarg_per = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "compute.pyx":40
+ *     cdef rarg_per = rad(w-Omega)
  * 
  *     cdef double tol = 10**-6             # <<<<<<<<<<<<<<
  *     cdef double mAnomaly = L - w + b * dt * dt + cos(rad(f * dt)) + s * sin(rad(f * dt))
@@ -1490,7 +1504,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_tol = __Pyx_pow_long(10, -6L);
 
-  /* "compute.pyx":34
+  /* "compute.pyx":41
  * 
  *     cdef double tol = 10**-6
  *     cdef double mAnomaly = L - w + b * dt * dt + cos(rad(f * dt)) + s * sin(rad(f * dt))             # <<<<<<<<<<<<<<
@@ -1499,7 +1513,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_mAnomaly = ((((__pyx_v_L - __pyx_v_w) + ((__pyx_v_b * __pyx_v_dt) * __pyx_v_dt)) + cos(__pyx_f_7compute_rad((__pyx_v_f * __pyx_v_dt)))) + (__pyx_v_s * sin(__pyx_f_7compute_rad((__pyx_v_f * __pyx_v_dt)))));
 
-  /* "compute.pyx":35
+  /* "compute.pyx":42
  *     cdef double tol = 10**-6
  *     cdef double mAnomaly = L - w + b * dt * dt + cos(rad(f * dt)) + s * sin(rad(f * dt))
  *     mAnomaly = wrapto180(mAnomaly)             # <<<<<<<<<<<<<<
@@ -1508,7 +1522,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_mAnomaly = __pyx_f_7compute_wrapto180(__pyx_v_mAnomaly);
 
-  /* "compute.pyx":36
+  /* "compute.pyx":43
  *     cdef double mAnomaly = L - w + b * dt * dt + cos(rad(f * dt)) + s * sin(rad(f * dt))
  *     mAnomaly = wrapto180(mAnomaly)
  *     cdef double e_x = 57.29578 * e             # <<<<<<<<<<<<<<
@@ -1517,7 +1531,7 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_e_x = (57.29578 * __pyx_v_e);
 
-  /* "compute.pyx":38
+  /* "compute.pyx":45
  *     cdef double e_x = 57.29578 * e
  * 
  *     cdef double eAnomaly = mAnomaly - e_x * sin(rad(mAnomaly));             # <<<<<<<<<<<<<<
@@ -1526,17 +1540,17 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
   __pyx_v_eAnomaly = (__pyx_v_mAnomaly - (__pyx_v_e_x * sin(__pyx_f_7compute_rad(__pyx_v_mAnomaly))));
 
-  /* "compute.pyx":43
+  /* "compute.pyx":50
  * 
- *     # compute the eccentric Anomaly, eAnomaly
+ *     # compute the eccentric Anomaly, eAnomaly in [deg]
  *     while(1):             # <<<<<<<<<<<<<<
  *         dM = mAnomaly - (eAnomaly - e_x * sin(rad(eAnomaly)))
  *         dE = dM / (1.0 - e * cos(rad(eAnomaly)))
  */
   while (1) {
 
-    /* "compute.pyx":44
- *     # compute the eccentric Anomaly, eAnomaly
+    /* "compute.pyx":51
+ *     # compute the eccentric Anomaly, eAnomaly in [deg]
  *     while(1):
  *         dM = mAnomaly - (eAnomaly - e_x * sin(rad(eAnomaly)))             # <<<<<<<<<<<<<<
  *         dE = dM / (1.0 - e * cos(rad(eAnomaly)))
@@ -1544,21 +1558,21 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
     __pyx_v_dM = (__pyx_v_mAnomaly - (__pyx_v_eAnomaly - (__pyx_v_e_x * sin(__pyx_f_7compute_rad(__pyx_v_eAnomaly)))));
 
-    /* "compute.pyx":45
+    /* "compute.pyx":52
  *     while(1):
  *         dM = mAnomaly - (eAnomaly - e_x * sin(rad(eAnomaly)))
  *         dE = dM / (1.0 - e * cos(rad(eAnomaly)))             # <<<<<<<<<<<<<<
  *         eAnomaly = eAnomaly + dE
  *         if round(fabs(dE), 10) <= tol:
  */
-    __pyx_t_1 = (1.0 - (__pyx_v_e * cos(__pyx_f_7compute_rad(__pyx_v_eAnomaly))));
-    if (unlikely(__pyx_t_1 == 0)) {
+    __pyx_t_2 = (1.0 - (__pyx_v_e * cos(__pyx_f_7compute_rad(__pyx_v_eAnomaly))));
+    if (unlikely(__pyx_t_2 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 45, __pyx_L1_error)
+      __PYX_ERR(0, 52, __pyx_L1_error)
     }
-    __pyx_v_dE = (__pyx_v_dM / __pyx_t_1);
+    __pyx_v_dE = (__pyx_v_dM / __pyx_t_2);
 
-    /* "compute.pyx":46
+    /* "compute.pyx":53
  *         dM = mAnomaly - (eAnomaly - e_x * sin(rad(eAnomaly)))
  *         dE = dM / (1.0 - e * cos(rad(eAnomaly)))
  *         eAnomaly = eAnomaly + dE             # <<<<<<<<<<<<<<
@@ -1567,45 +1581,45 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
  */
     __pyx_v_eAnomaly = (__pyx_v_eAnomaly + __pyx_v_dE);
 
-    /* "compute.pyx":47
+    /* "compute.pyx":54
  *         dE = dM / (1.0 - e * cos(rad(eAnomaly)))
  *         eAnomaly = eAnomaly + dE
  *         if round(fabs(dE), 10) <= tol:             # <<<<<<<<<<<<<<
  *             break
  * 
  */
-    __pyx_t_2 = PyFloat_FromDouble(fabs(__pyx_v_dE)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(fabs(__pyx_v_dE)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
     __Pyx_INCREF(__pyx_int_10);
     __Pyx_GIVEREF(__pyx_int_10);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_10);
-    __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_round, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_round, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_tol); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_tol); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_5) {
 
-      /* "compute.pyx":48
+      /* "compute.pyx":55
  *         eAnomaly = eAnomaly + dE
  *         if round(fabs(dE), 10) <= tol:
  *             break             # <<<<<<<<<<<<<<
  * 
- *     # compute true anomly, tAnomaly (maybe use atan2)
+ *     #canonical heliocentric position
  */
       goto __pyx_L4_break;
 
-      /* "compute.pyx":47
+      /* "compute.pyx":54
  *         dE = dM / (1.0 - e * cos(rad(eAnomaly)))
  *         eAnomaly = eAnomaly + dE
  *         if round(fabs(dE), 10) <= tol:             # <<<<<<<<<<<<<<
@@ -1616,154 +1630,203 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
   }
   __pyx_L4_break:;
 
-  /* "compute.pyx":51
- * 
- *     # compute true anomly, tAnomaly (maybe use atan2)
- *     cdef tAnomaly = 2 * atan(rad(sqrt((1+e) / (1-e)))) * tan(rad(eAnomaly/2))             # <<<<<<<<<<<<<<
- *     cdef r = a * (1 - e * e) / (1 + e * cos(tAnomaly))
- * 
- */
-  __pyx_t_1 = (1.0 + __pyx_v_e);
-  __pyx_t_6 = (1.0 - __pyx_v_e);
-  if (unlikely(__pyx_t_6 == 0)) {
-    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 51, __pyx_L1_error)
-  }
-  __pyx_t_4 = PyFloat_FromDouble(((2.0 * atan(__pyx_f_7compute_rad(sqrt((__pyx_t_1 / __pyx_t_6))))) * tan(__pyx_f_7compute_rad((__pyx_v_eAnomaly / 2.0))))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_tAnomaly = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "compute.pyx":52
- *     # compute true anomly, tAnomaly (maybe use atan2)
- *     cdef tAnomaly = 2 * atan(rad(sqrt((1+e) / (1-e)))) * tan(rad(eAnomaly/2))
- *     cdef r = a * (1 - e * e) / (1 + e * cos(tAnomaly))             # <<<<<<<<<<<<<<
- * 
- *     cdef rOmega = rad(Omega)
- */
-  __pyx_t_6 = (__pyx_v_a * (1.0 - (__pyx_v_e * __pyx_v_e)));
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_tAnomaly); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
-  __pyx_t_7 = (1.0 + (__pyx_v_e * cos(__pyx_t_1)));
-  if (unlikely(__pyx_t_7 == 0)) {
-    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 52, __pyx_L1_error)
-  }
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_t_6 / __pyx_t_7)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_r = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "compute.pyx":54
- *     cdef r = a * (1 - e * e) / (1 + e * cos(tAnomaly))
- * 
- *     cdef rOmega = rad(Omega)             # <<<<<<<<<<<<<<
- *     cdef rI = rad(I)
- *     cdef rw = rad(w)
- */
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_f_7compute_rad(__pyx_v_Omega)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_rOmega = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "compute.pyx":55
- * 
- *     cdef rOmega = rad(Omega)
- *     cdef rI = rad(I)             # <<<<<<<<<<<<<<
- *     cdef rw = rad(w)
- *     cdef Point coordinates
- */
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_f_7compute_rad(__pyx_v_I)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_rI = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "compute.pyx":56
- *     cdef rOmega = rad(Omega)
- *     cdef rI = rad(I)
- *     cdef rw = rad(w)             # <<<<<<<<<<<<<<
- *     cdef Point coordinates
- *     coordinates.x = r * (cos(rOmega) * cos(tAnomaly + rw - rOmega) - sin(rOmega) * sin(tAnomaly + rw - rOmega) * cos(rI))
- */
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_f_7compute_rad(__pyx_v_w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_rw = __pyx_t_4;
-  __pyx_t_4 = 0;
-
   /* "compute.pyx":58
- *     cdef rw = rad(w)
- *     cdef Point coordinates
- *     coordinates.x = r * (cos(rOmega) * cos(tAnomaly + rw - rOmega) - sin(rOmega) * sin(tAnomaly + rw - rOmega) * cos(rI))             # <<<<<<<<<<<<<<
- *     coordinates.y = r * (sin(rOmega) * cos(tAnomaly + rw - rOmega) + cos(rOmega) * sin(tAnomaly + rw - rOmega) * cos(rI))
  * 
+ *     #canonical heliocentric position
+ *     cdef reAnomaly = rad(eAnomaly)             # <<<<<<<<<<<<<<
+ *     cdef x_3 = a * (cos(reAnomaly) - e)
+ *     cdef y_3 = a * sin(reAnomaly) * sqrt(1 - e*e)
  */
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_rOmega); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
-  __pyx_t_4 = PyNumber_Add(__pyx_v_tAnomaly, __pyx_v_rw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_f_7compute_rad(__pyx_v_eAnomaly)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_4, __pyx_v_rOmega); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_rOmega); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
-  __pyx_t_3 = PyNumber_Add(__pyx_v_tAnomaly, __pyx_v_rw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_v_rOmega); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_rI); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
-  __pyx_t_4 = PyFloat_FromDouble(((cos(__pyx_t_7) * cos(__pyx_t_6)) - ((sin(__pyx_t_1) * sin(__pyx_t_8)) * cos(__pyx_t_9)))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_v_r, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_coordinates.x = __pyx_t_9;
+  __pyx_v_reAnomaly = __pyx_t_4;
+  __pyx_t_4 = 0;
 
   /* "compute.pyx":59
- *     cdef Point coordinates
- *     coordinates.x = r * (cos(rOmega) * cos(tAnomaly + rw - rOmega) - sin(rOmega) * sin(tAnomaly + rw - rOmega) * cos(rI))
- *     coordinates.y = r * (sin(rOmega) * cos(tAnomaly + rw - rOmega) + cos(rOmega) * sin(tAnomaly + rw - rOmega) * cos(rI))             # <<<<<<<<<<<<<<
- * 
+ *     #canonical heliocentric position
+ *     cdef reAnomaly = rad(eAnomaly)
+ *     cdef x_3 = a * (cos(reAnomaly) - e)             # <<<<<<<<<<<<<<
+ *     cdef y_3 = a * sin(reAnomaly) * sqrt(1 - e*e)
  * 
  */
-  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_rOmega); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
-  __pyx_t_3 = PyNumber_Add(__pyx_v_tAnomaly, __pyx_v_rw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_v_rOmega); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_reAnomaly); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_a * (cos(__pyx_t_2) - __pyx_v_e))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_rOmega); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
-  __pyx_t_4 = PyNumber_Add(__pyx_v_tAnomaly, __pyx_v_rw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_4, __pyx_v_rOmega); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_rI); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
-  __pyx_t_3 = PyFloat_FromDouble(((sin(__pyx_t_9) * cos(__pyx_t_8)) + ((cos(__pyx_t_1) * sin(__pyx_t_6)) * cos(__pyx_t_7)))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_v_r, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_v_coordinates.y = __pyx_t_7;
+  __pyx_v_x_3 = __pyx_t_4;
+  __pyx_t_4 = 0;
 
-  /* "compute.pyx":62
+  /* "compute.pyx":60
+ *     cdef reAnomaly = rad(eAnomaly)
+ *     cdef x_3 = a * (cos(reAnomaly) - e)
+ *     cdef y_3 = a * sin(reAnomaly) * sqrt(1 - e*e)             # <<<<<<<<<<<<<<
  * 
+ *     # compute true anomaly in [rad]
+ */
+  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_reAnomaly); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(((__pyx_v_a * sin(__pyx_t_2)) * sqrt((1.0 - (__pyx_v_e * __pyx_v_e))))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_v_y_3 = __pyx_t_4;
+  __pyx_t_4 = 0;
+
+  /* "compute.pyx":63
+ * 
+ *     # compute true anomaly in [rad]
+ *     rtAnomaly = atan2(y_3, x_3)             # <<<<<<<<<<<<<<
+ * 
+ *     # Rotate the coordinates from canonical to ecliptic
+ */
+  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_y_3); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_x_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_v_rtAnomaly = atan2(__pyx_t_2, __pyx_t_6);
+
+  /* "compute.pyx":66
+ * 
+ *     # Rotate the coordinates from canonical to ecliptic
+ *     cdef x_2 = x_3 * cos(rarg_per) - y_3*sin(rarg_per)             # <<<<<<<<<<<<<<
+ *     cdef y_2 = x_3 * sin(rarg_per) + y_3*cos(rarg_per)
+ *     cdef x_1 = x_2
+ */
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_rarg_per); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(cos(__pyx_t_6)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = PyNumber_Multiply(__pyx_v_x_3, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_rarg_per); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(sin(__pyx_t_6)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_y_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_x_2 = __pyx_t_4;
+  __pyx_t_4 = 0;
+
+  /* "compute.pyx":67
+ *     # Rotate the coordinates from canonical to ecliptic
+ *     cdef x_2 = x_3 * cos(rarg_per) - y_3*sin(rarg_per)
+ *     cdef y_2 = x_3 * sin(rarg_per) + y_3*cos(rarg_per)             # <<<<<<<<<<<<<<
+ *     cdef x_1 = x_2
+ *     cdef y_1 = y_2 * cos(rad(I))
+ */
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_rarg_per); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(sin(__pyx_t_6)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_x_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_rarg_per); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(cos(__pyx_t_6)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = PyNumber_Multiply(__pyx_v_y_3, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_y_2 = __pyx_t_4;
+  __pyx_t_4 = 0;
+
+  /* "compute.pyx":68
+ *     cdef x_2 = x_3 * cos(rarg_per) - y_3*sin(rarg_per)
+ *     cdef y_2 = x_3 * sin(rarg_per) + y_3*cos(rarg_per)
+ *     cdef x_1 = x_2             # <<<<<<<<<<<<<<
+ *     cdef y_1 = y_2 * cos(rad(I))
+ * 
+ */
+  __Pyx_INCREF(__pyx_v_x_2);
+  __pyx_v_x_1 = __pyx_v_x_2;
+
+  /* "compute.pyx":69
+ *     cdef y_2 = x_3 * sin(rarg_per) + y_3*cos(rarg_per)
+ *     cdef x_1 = x_2
+ *     cdef y_1 = y_2 * cos(rad(I))             # <<<<<<<<<<<<<<
+ * 
+ *     # Position in heliocentric ecliptic coordinates
+ */
+  __pyx_t_4 = PyFloat_FromDouble(cos(__pyx_f_7compute_rad(__pyx_v_I))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = PyNumber_Multiply(__pyx_v_y_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_y_1 = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "compute.pyx":72
+ * 
+ *     # Position in heliocentric ecliptic coordinates
+ *     rOmega = rad(Omega)             # <<<<<<<<<<<<<<
+ *     cdef Point coordinates
+ *     coordinates.x = x_1 * cos(rOmega) - y_1 * sin(rOmega)
+ */
+  __pyx_v_rOmega = __pyx_f_7compute_rad(__pyx_v_Omega);
+
+  /* "compute.pyx":74
+ *     rOmega = rad(Omega)
+ *     cdef Point coordinates
+ *     coordinates.x = x_1 * cos(rOmega) - y_1 * sin(rOmega)             # <<<<<<<<<<<<<<
+ *     coordinates.y =-( x_1 * sin(rOmega) + y_1 * cos(rOmega))
+ * 
+ */
+  __pyx_t_3 = PyFloat_FromDouble(cos(__pyx_v_rOmega)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyNumber_Multiply(__pyx_v_x_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyFloat_FromDouble(sin(__pyx_v_rOmega)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_y_1, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_coordinates.x = __pyx_t_6;
+
+  /* "compute.pyx":75
+ *     cdef Point coordinates
+ *     coordinates.x = x_1 * cos(rOmega) - y_1 * sin(rOmega)
+ *     coordinates.y =-( x_1 * sin(rOmega) + y_1 * cos(rOmega))             # <<<<<<<<<<<<<<
+ * 
+ *     return coordinates
+ */
+  __pyx_t_3 = PyFloat_FromDouble(sin(__pyx_v_rOmega)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_x_1, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyFloat_FromDouble(cos(__pyx_v_rOmega)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyNumber_Multiply(__pyx_v_y_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = PyNumber_Negative(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_coordinates.y = __pyx_t_6;
+
+  /* "compute.pyx":77
+ *     coordinates.y =-( x_1 * sin(rOmega) + y_1 * cos(rOmega))
  * 
  *     return coordinates             # <<<<<<<<<<<<<<
  */
   __pyx_r = __pyx_v_coordinates;
   goto __pyx_L0;
 
-  /* "compute.pyx":21
+  /* "compute.pyx":24
  *     return angle - 180.0
  * 
  * cpdef Point compute_coordinates(double dt, double a0, double da, double e0,             # <<<<<<<<<<<<<<
@@ -1773,17 +1836,20 @@ static struct __pyx_t_7compute_Point __pyx_f_7compute_compute_coordinates(double
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_WriteUnraisable("compute.compute_coordinates", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __Pyx_pretend_to_initialize(&__pyx_r);
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_tAnomaly);
-  __Pyx_XDECREF(__pyx_v_r);
-  __Pyx_XDECREF(__pyx_v_rOmega);
-  __Pyx_XDECREF(__pyx_v_rI);
-  __Pyx_XDECREF(__pyx_v_rw);
+  __Pyx_XDECREF(__pyx_v_rarg_per);
+  __Pyx_XDECREF(__pyx_v_reAnomaly);
+  __Pyx_XDECREF(__pyx_v_x_3);
+  __Pyx_XDECREF(__pyx_v_y_3);
+  __Pyx_XDECREF(__pyx_v_x_2);
+  __Pyx_XDECREF(__pyx_v_y_2);
+  __Pyx_XDECREF(__pyx_v_x_1);
+  __Pyx_XDECREF(__pyx_v_y_1);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -1867,101 +1933,101 @@ static PyObject *__pyx_pw_7compute_1compute_coordinates(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 1); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 1); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_da)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 2); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 2); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_e0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 3); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 3); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_de)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 4); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 4); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_I0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 5); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 5); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
         if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dI)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 6); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 6); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  7:
         if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_L0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 7); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 7); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  8:
         if (likely((values[8] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dL)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 8); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 8); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  9:
         if (likely((values[9] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_w0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 9); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 9); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 10:
         if (likely((values[10] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dw)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 10); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 10); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 11:
         if (likely((values[11] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_Omega0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 11); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 11); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 12:
         if (likely((values[12] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dOmega)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 12); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 12); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 13:
         if (likely((values[13] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 13); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 13); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 14:
         if (likely((values[14] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 14); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 14); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 15:
         if (likely((values[15] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_s)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 15); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 15); __PYX_ERR(0, 24, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 16:
         if (likely((values[16] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_f)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 16); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, 16); __PYX_ERR(0, 24, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "compute_coordinates") < 0)) __PYX_ERR(0, 21, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "compute_coordinates") < 0)) __PYX_ERR(0, 24, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 17) {
       goto __pyx_L5_argtuple_error;
@@ -1984,27 +2050,27 @@ static PyObject *__pyx_pw_7compute_1compute_coordinates(PyObject *__pyx_self, Py
       values[15] = PyTuple_GET_ITEM(__pyx_args, 15);
       values[16] = PyTuple_GET_ITEM(__pyx_args, 16);
     }
-    __pyx_v_dt = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_dt == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
-    __pyx_v_a0 = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_a0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
-    __pyx_v_da = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_da == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
-    __pyx_v_e0 = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_e0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
-    __pyx_v_de = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_de == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
-    __pyx_v_I0 = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_I0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
-    __pyx_v_dI = __pyx_PyFloat_AsDouble(values[6]); if (unlikely((__pyx_v_dI == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
-    __pyx_v_L0 = __pyx_PyFloat_AsDouble(values[7]); if (unlikely((__pyx_v_L0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
-    __pyx_v_dL = __pyx_PyFloat_AsDouble(values[8]); if (unlikely((__pyx_v_dL == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_w0 = __pyx_PyFloat_AsDouble(values[9]); if (unlikely((__pyx_v_w0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_dw = __pyx_PyFloat_AsDouble(values[10]); if (unlikely((__pyx_v_dw == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_Omega0 = __pyx_PyFloat_AsDouble(values[11]); if (unlikely((__pyx_v_Omega0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_dOmega = __pyx_PyFloat_AsDouble(values[12]); if (unlikely((__pyx_v_dOmega == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_b = __pyx_PyFloat_AsDouble(values[13]); if (unlikely((__pyx_v_b == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_c = __pyx_PyFloat_AsDouble(values[14]); if (unlikely((__pyx_v_c == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_s = __pyx_PyFloat_AsDouble(values[15]); if (unlikely((__pyx_v_s == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_f = __pyx_PyFloat_AsDouble(values[16]); if (unlikely((__pyx_v_f == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
+    __pyx_v_dt = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_dt == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
+    __pyx_v_a0 = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_a0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
+    __pyx_v_da = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_da == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
+    __pyx_v_e0 = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_e0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
+    __pyx_v_de = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_de == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L3_error)
+    __pyx_v_I0 = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_I0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L3_error)
+    __pyx_v_dI = __pyx_PyFloat_AsDouble(values[6]); if (unlikely((__pyx_v_dI == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L3_error)
+    __pyx_v_L0 = __pyx_PyFloat_AsDouble(values[7]); if (unlikely((__pyx_v_L0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L3_error)
+    __pyx_v_dL = __pyx_PyFloat_AsDouble(values[8]); if (unlikely((__pyx_v_dL == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_w0 = __pyx_PyFloat_AsDouble(values[9]); if (unlikely((__pyx_v_w0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_dw = __pyx_PyFloat_AsDouble(values[10]); if (unlikely((__pyx_v_dw == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_Omega0 = __pyx_PyFloat_AsDouble(values[11]); if (unlikely((__pyx_v_Omega0 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_dOmega = __pyx_PyFloat_AsDouble(values[12]); if (unlikely((__pyx_v_dOmega == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_b = __pyx_PyFloat_AsDouble(values[13]); if (unlikely((__pyx_v_b == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_c = __pyx_PyFloat_AsDouble(values[14]); if (unlikely((__pyx_v_c == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_s = __pyx_PyFloat_AsDouble(values[15]); if (unlikely((__pyx_v_s == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L3_error)
+    __pyx_v_f = __pyx_PyFloat_AsDouble(values[16]); if (unlikely((__pyx_v_f == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 27, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 21, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("compute_coordinates", 1, 17, 17, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 24, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("compute.compute_coordinates", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2026,7 +2092,7 @@ static PyObject *__pyx_pf_7compute_compute_coordinates(CYTHON_UNUSED PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("compute_coordinates", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert__to_py_struct____pyx_t_7compute_Point(__pyx_f_7compute_compute_coordinates(__pyx_v_dt, __pyx_v_a0, __pyx_v_da, __pyx_v_e0, __pyx_v_de, __pyx_v_I0, __pyx_v_dI, __pyx_v_L0, __pyx_v_dL, __pyx_v_w0, __pyx_v_dw, __pyx_v_Omega0, __pyx_v_dOmega, __pyx_v_b, __pyx_v_c, __pyx_v_s, __pyx_v_f, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert__to_py_struct____pyx_t_7compute_Point(__pyx_f_7compute_compute_coordinates(__pyx_v_dt, __pyx_v_a0, __pyx_v_da, __pyx_v_e0, __pyx_v_de, __pyx_v_I0, __pyx_v_dI, __pyx_v_L0, __pyx_v_dL, __pyx_v_w0, __pyx_v_dw, __pyx_v_Omega0, __pyx_v_dOmega, __pyx_v_b, __pyx_v_c, __pyx_v_s, __pyx_v_f, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2117,7 +2183,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_round = __Pyx_GetBuiltinName(__pyx_n_s_round); if (!__pyx_builtin_round) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_builtin_round = __Pyx_GetBuiltinName(__pyx_n_s_round); if (!__pyx_builtin_round) __PYX_ERR(0, 54, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2403,7 +2469,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "compute.pyx":1
- * from libc.math cimport fmod, cos, sin, fabs, sqrt, atan, tan             # <<<<<<<<<<<<<<
+ * from libc.math cimport fmod, cos, sin, fabs, sqrt, atan2, tan             # <<<<<<<<<<<<<<
  * 
  * """
  */

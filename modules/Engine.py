@@ -36,7 +36,6 @@ class Engine:
         Engine.screen.blit(fps, (self.w - 60, 30))
         # the number of centuries past J2000.0
         Engine.dt = (Engine.time - 2451545.0) / 36525
-        pygame.draw.line(Engine.screen, BLUE, (0, self.h/2), (self.w, self.h/2))
         for planet in Engine.planet_list:
             planet.update()
             planet.display()
