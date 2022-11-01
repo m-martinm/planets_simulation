@@ -1,5 +1,4 @@
 import pygame
-from modules.Globals import *
 import modules.compute
 import numpy as np
 import modules.Engine
