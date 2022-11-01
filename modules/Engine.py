@@ -1,5 +1,6 @@
 import pygame
-import sys, os
+import sys
+import os
 from pandas import Timestamp, to_datetime
 from json import load
 from modules.Planet import Planet
@@ -8,9 +9,9 @@ from modules.Settings import *
 
 class Engine:
 
-    colors = {"BLACK" : (0, 0, 0), "WHITE" : (255, 255, 255), "BLUE" : (21, 5, 255), 
-              "YELLOW" : (255, 225, 5), "RED" : (153, 82, 7), "BEIGE" : (224, 195, 107), 
-              "L_BLUE" : (88, 195, 221), "GRAY": (85,85,85)}
+    colors = {"BLACK": (0, 0, 0), "WHITE": (255, 255, 255), "BLUE": (21, 5, 255),
+              "YELLOW": (255, 225, 5), "RED": (153, 82, 7), "BEIGE": (224, 195, 107),
+              "L_BLUE": (88, 195, 221), "GRAY": (85, 85, 85)}
 
     def __init__(self, width: int, height: int, simulated_planets: list):
         """The main class of the application, it has to be created once
@@ -18,6 +19,7 @@ class Engine:
         Args:
             width (int): screen width
             height (int): screen height
+            simulated_planets (list): list of all the planets which have to be drawn
         Functions: 
             event_handler : Function to handel events in the main loop
             render_text : Updates all the text displayed on the screen and blits it
@@ -47,7 +49,7 @@ class Engine:
         self.speed = 10  # in [days/sec]
         self.settings = Settings(self)
 
-    def create_planet(self, data: dict, planet_name : str):
+    def create_planet(self, data: dict, planet_name: str):
         """Reads the necesarry data from the data file and creates an instance
             of the Planet class
         """
@@ -84,23 +86,31 @@ class Engine:
                 if event.key == pygame.K_ESCAPE:
                     self.settings.settings_loop()
                 elif event.key == pygame.K_SPACE:
-                    if self.speed > 0 : self.speed = 0
-                    else : self.speed = 10
-    
+                    if self.speed > 0:
+                        self.speed = 0
+                    else:
+                        self.speed = 10
+
     def render_text(self):
         """Updates all the text displayed on the screen and blits it"""
-        
+
         # texts
         date = self.font.render(
             f"Date: {to_datetime(self.time, origin= 'julian', unit='D').date()}", True, self.colors.get("WHITE"))
-        fps = self.font.render("FPS  " + str(int(self.clock.get_fps())), True, self.colors.get("RED"))
-        Engine_data = self.font.render(f"Speed  {self.speed} [days/sec]", True, self.colors.get("WHITE"))
-        settings = self.font.render("Press [ESC] to open settings", True, self.colors.get("WHITE"))
-        pause = self.font.render("Press [SPACE] to pause", True, self.colors.get("WHITE"))
-        
+        fps = self.font.render(
+            "FPS  " + str(int(self.clock.get_fps())), True, self.colors.get("RED"))
+        Engine_data = self.font.render(
+            f"Speed  {self.speed} [days/sec]", True, self.colors.get("WHITE"))
+        settings = self.font.render(
+            "Press [ESC] to open settings", True, self.colors.get("WHITE"))
+        pause = self.font.render(
+            "Press [SPACE] to pause", True, self.colors.get("WHITE"))
+
         # blit
-        self.screen.blit(pause, (self.w/2 - self.font.size("Press [SPACE] to pause")[0]/2, 60))
-        self.screen.blit(settings, (self.w/2 - self.font.size("Press [ESC] to open settings")[0]/2, 30))
+        self.screen.blit(
+            pause, (self.w/2 - self.font.size("Press [SPACE] to pause")[0]/2, 60))
+        self.screen.blit(
+            settings, (self.w/2 - self.font.size("Press [ESC] to open settings")[0]/2, 30))
         self.screen.blit(Engine_data, (30, 60))
         self.screen.blit(date, (30, 30))
         self.screen.blit(fps, (self.w - 80, 30))
@@ -110,12 +120,13 @@ class Engine:
         dt = (self.time - 2451545.0) / 36525
         for planet in self.planet_list:
             planet.update(dt, self.center)
-            pygame.draw.circle(self.screen, self.colors.get(str(planet.color)), planet.pos, planet.r)
+            pygame.draw.circle(self.screen, self.colors.get(
+                str(planet.color)), planet.pos, planet.r)
         self.time = self.time + self.speed/self.fps
 
     def main(self):
         """Main loop of the application"""
-        
+
         print("starting the simulation")
         self.load_planets()
 
