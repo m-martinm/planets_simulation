@@ -22,7 +22,7 @@ class Engine:
         Engine.dt = None
         Engine.screen = pygame.display.set_mode(self.size)
         Engine.center = (self.w/2, self.h / 2)
-        Engine.speed = 10  # in [days/sec]
+        Engine.speed = 30  # in [days/sec]
 
     def render(self):
         self.clock.tick(Engine.fps)
@@ -36,11 +36,12 @@ class Engine:
         Engine.screen.blit(fps, (self.w - 60, 30))
         # the number of centuries past J2000.0
         Engine.dt = (Engine.time - 2451545.0) / 36525
+        pygame.draw.line(Engine.screen, BLUE, (0, self.h/2), (self.w, self.h/2))
         for planet in Engine.planet_list:
             planet.update()
             planet.display()
         pygame.display.flip()
-        # Engine.time = Engine.time + Engine.speed/Engine.fps
+        Engine.time = Engine.time + Engine.speed/Engine.fps
 
     def interpolate(self):
         sorted_x = sorted(Engine.planet_list, key=attrgetter('avg_dist'))

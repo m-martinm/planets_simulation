@@ -17,7 +17,7 @@ class Planet:
     b, c, s, f additional terms for Jupiter through Neptune
     """
 
-    def __init__(self, name, avg_dist, radius, color, a0, da, e0, de, L0, dL, w0, dw, b, c, s, f, sun=False):
+    def __init__(self, name, avg_dist, radius, color, a0, da, e0, de, I0, dI, L0, dL, w0, dw, Omega0, dOmega, b, c, s, f, sun=False):
         self.r = np.log(radius)  # scale down for the animation
         self.name = name
         self.avg_dist = avg_dist
@@ -27,10 +27,14 @@ class Planet:
         self.da = da
         self.e0 = e0
         self.de = de
+        self.I0 = I0
+        self.dI = dI
         self.L0 = L0
         self.dL = dL
         self.w0 = w0
         self.dw = dw
+        self.Omega0 = Omega0
+        self.dOmega = dOmega
 
         # additional terms for some bodies
         self.b = b
@@ -42,6 +46,9 @@ class Planet:
         self.pos = [Engine.center[0], Engine.center[1]]
 
         Engine.planet_list.append(self)
+        
+    def load_planet(self):
+        pass
 
     def display(self):
         pygame.draw.circle(Engine.screen, self.color, self.pos, self.r)
@@ -58,7 +65,14 @@ class Planet:
             #                                 double dw, double b, double c, double s,
             #                                 double f):
             coordinates = modules.compute.compute_coordinates(
-                Engine.dt, self.a0, self.da, self.e0, self.de, self.L0, self.dL, self.w0, self.dw, self.b, self.c, self.s, self.f)
-
-            self.pos[0] = Engine.center[0] + coordinates['x']*self.multiplier
-            self.pos[1] = Engine.center[1] + coordinates['y']*self.multiplier
+                Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI, self.L0, self.dL, self.w0, self.dw, self.Omega0,self.dOmega,self.b, self.c, self.s, self.f)
+            # if self.name == "mars":
+            #     theta = np.radians(336.04084)
+            #     x = coordinates['x']
+            #     y = coordinates['y']
+            #     self.pos[0] = Engine.center[0] + 150 * (x*np.cos(theta) - y*np.sin(theta))
+            #     self.pos[1] = Engine.center[1] + 150 * (x*np.sin(theta) + y*np.cos(theta))
+            # else:
+            self.pos[0] = Engine.center[0] + coordinates['x']*150
+            self.pos[1] = Engine.center[1] + coordinates['y']*150
+            
