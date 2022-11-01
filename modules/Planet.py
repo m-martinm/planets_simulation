@@ -1,8 +1,8 @@
 import pygame
-from modules.Engine import *
-from modules.Constants import *
+from modules.Globals import *
 import modules.compute
 import numpy as np
+import modules.Engine
 
 
 class Planet:
@@ -21,7 +21,6 @@ class Planet:
         self.r = np.log(radius)  # scale down for the animation
         self.name = name
         self.avg_dist = avg_dist
-        self.multiplier = None
         self.color = color
         self.a0 = a0
         self.da = da
@@ -43,17 +42,9 @@ class Planet:
         self.f = f
         self.sun = sun
 
-        self.pos = [Engine.center[0], Engine.center[1]]
+        self.pos = [0,0]
 
-        Engine.planet_list.append(self)
-        
-    def load_planet(self):
-        pass
-
-    def display(self):
-        pygame.draw.circle(Engine.screen, self.color, self.pos, self.r)
-
-    def update(self):
+    def update(self, dt : float, center : tuple):
 
         if self.sun == True:
             pass
@@ -65,8 +56,8 @@ class Planet:
             #                                 double dw, double b, double c, double s,
             #                                 double f):
             coordinates = modules.compute.compute_coordinates(
-                Engine.dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI, self.L0, self.dL, self.w0, self.dw, self.Omega0,self.dOmega,self.b, self.c, self.s, self.f)
+                dt, self.a0, self.da, self.e0, self.de, self.I0, self.dI, self.L0, self.dL, self.w0, self.dw, self.Omega0,self.dOmega,self.b, self.c, self.s, self.f)
 
-            self.pos[0] = Engine.center[0] + coordinates['x']*150
-            self.pos[1] = Engine.center[1] + coordinates['y']*150
+            self.pos[0] = center[0] + coordinates['x']*150
+            self.pos[1] = center[1] + coordinates['y']*150
             
