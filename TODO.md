@@ -9,3 +9,5 @@
  - Add background
  - Make an executable with pyinstaller /if possible/
  - extend rawdata.json
+ - make it scaleable
+   - https://stackoverflow.com/questions/64341589/scale-everything-on-pygame-display-surface
